@@ -166,7 +166,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -174,7 +174,7 @@ export default function Navbar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
           <Link to={"/"}>
             <Typography
@@ -183,7 +183,7 @@ export default function Navbar() {
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              MUI
+              Logo
             </Typography>
           </Link>
 
