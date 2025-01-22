@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+import 'flowbite';
 import 'animate.css';
 import { createRoot } from 'react-dom/client'
 import './index.css'

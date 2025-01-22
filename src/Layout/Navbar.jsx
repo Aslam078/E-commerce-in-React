@@ -9,13 +9,13 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Button } from '@mui/material';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,8 +60,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [search, setSearch] = React.useState([]);
 
+  const handlechange = (e) => {
+    setSearch(e.target.value)
 
+  }
+
+  const user = JSON.parse(localStorage.getItem('save user'))
+
+  console.log(search);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -122,17 +130,9 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem> */}
 
-        <Link to={'cart/'}>
-      <MenuItem>
+      <Link to={'cart/'}>
+        <MenuItem>
           <IconButton
             aria-label="show 17 new notifications"
             size="large"
@@ -143,9 +143,23 @@ export default function Navbar() {
             </Badge>
           </IconButton>
 
-        <p>Cart</p>
-      </MenuItem>
-        </Link>
+          <p>Cart</p>
+        </MenuItem>
+      </Link>
+
+        <MenuItem>
+          <IconButton
+            aria-label="show 17 new notifications"
+            size="large"
+            color="inherit"
+          >
+            <Badge badgeContent={0} color="error">
+              <AddShoppingCartIcon />
+            </Badge>
+          </IconButton>
+
+          <p>Cart</p>
+        </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -157,7 +171,7 @@ export default function Navbar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>{ user.username || 'profile' }</p>
       </MenuItem>
     </Menu>
   );
@@ -166,15 +180,6 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
 
           <Link to={"/"}>
             <Typography
@@ -183,7 +188,7 @@ export default function Navbar() {
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              Logo
+              E-Commerce
             </Typography>
           </Link>
 
@@ -194,15 +199,24 @@ export default function Navbar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-            />
+              onChange={handlechange}
+              value={search}
+              />
+              <Button size='small'> <Link to={`search?search=${search}`} className='text-white italic font-sans font-semibold text-xs px-3'>search</Link> </Button>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
+
+            
+          <Link to={'all categories'}>
+          <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                  <div className='flex items-center text-base'><FormatListBulletedIcon /> All Category</div>
+              </IconButton>
+          </Link>
 
             <Link to={'cart/'}>
               <IconButton
@@ -211,7 +225,7 @@ export default function Navbar() {
                 color="inherit"
               >
                 <Badge badgeContent={0} color="error">
-                  <AddShoppingCartIcon />
+                  <div className='flex items-center text-base'><AddShoppingCartIcon /> Cart</div>
                 </Badge>
               </IconButton>
             </Link>
@@ -225,7 +239,7 @@ export default function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <div className='flex items-center text-base'><AccountCircle /> { user.username || 'profile' }</div>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

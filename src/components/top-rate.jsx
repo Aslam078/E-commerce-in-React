@@ -6,76 +6,73 @@ import CardMedia from '@mui/material/CardMedia';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import CircleLoading from './circle-loading';
 
 
 function TopRate() {
 
     const [toprated, setToprated] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        axios.get('https://dummyjson.com/products?sortBy=rating&order=desc&limit=5').then(res => {
+        setLoading(<CircleLoading />)
+        axios.get('https://dummyjson.com/products?sortBy=rating&order=desc&limit=4').then(res => {
             setToprated(res.data.products);
+            setLoading(false)
         }).catch(err => console.log(err))
     }, [])
 
     // console.log(toprated);
 
-    const calculateDiscountedPrice = (product) => { 
+    const calculateDiscountedPrice = (product) => {
         return (product.price - (product.price * product.discountPercentage / 100)).toFixed(2);
-     };
+    };
 
     return (
 
 
         <>
-            <div className='grid p-1 rounded-md grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 md:grid-cols-3 gap-2 '>
-                {
+            <div className='bg-gray-200'>
+                <p className='text-2xl font-semibold pt-3 ps-1'>Top rated</p>
+                {loading ? loading :
+                    <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 items-center xl:grid-cols-2 gap-2 p-2'>
+                        {
 
-                    toprated.map(product => {
-                        return (
-                            <Card key={product.id} sx={{ maxWidth: 365 }}>
+                            toprated.map(product => {
+                                return (
+                                    <Card key={product.id} sx={{ maxWidth: 320 }}>
 
-                                <div className='hover:scale-110 transition-all flex items-center justify-center'>
+                                        <div className='hover:scale-110 transition-all flex items-center justify-center'>
 
-                                    <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
-                                        <CardMedia
-                                            sx={{ height: 300, width: 300 }}
-                                            image={product.thumbnail}
-                                            title={product.title}
-                                        />
-                                    </Link>
+                                            <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
+                                                <CardMedia
+                                                    sx={{ height: 235, width: 235 }}
+                                                    image={product.thumbnail}
+                                                    title={product.title}
+                                                />
+                                            </Link>
 
-                                </div>
-                                <CardContent>
-                                    <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
-                                        <Typography gutterBottom variant="h6" component="div">
-                                            <p className='truncate hover:underline cursor-pointer'>{product.title}</p>
-                                        </Typography>
-                                    </Link>
-                                    <Typography gutterBottom variant="p" component="div">
-                                        {product.category}
-                                    </Typography>
+                                        </div>
+                                        <CardContent>
+                                            <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
 
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                        <span className='font-bold'>${calculateDiscountedPrice(product)}</span> <span className='text-gray-600 line-through opacity-85'>${product.price}</span> <span className='text-green-600 font-semibold'>{product.discountPercentage}% off</span>
-                                    </Typography>
+                                                <Typography variant="h5" component="div" className='flex gap-2 items-center'>
+                                                    <span>{product.rating}</span>
+                                                    <Rating name="half-rating-read" defaultValue={product.rating} precision={0.5} readOnly size="small" />
+                                                </Typography>
 
-                                    <Typography gutterBottom variant="p" component="div">
-                                        {product.stock} Left
-                                    </Typography>
-
-                                    <Typography gutterBottom variant="p" component="div" className='flex gap-2 items-center'>
-                                        <span className='text-gray-400 text-sm'>{product.rating}</span>
-                                        <Rating name="half-rating-read" defaultValue={product.rating} precision={0.5} readOnly size="small" />
-                                    </Typography>
+                                            </Link>
 
 
-                                </CardContent>
-                            </Card>
-                        )
 
-                    })
+                                        </CardContent>
+                                    </Card>
+                                )
 
+                            })
+
+                        }
+                    </div>
                 }
             </div>
         </>

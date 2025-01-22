@@ -36,7 +36,7 @@ function Suggestions() {
 
             {
                 suggestions.map((product) => {
-                    return <Card key={product.id} sx={{ minWidth: 200, paddingX: 1 }}>
+                    return <Card key={product.id} sx={{ width: 250, maxWidth: 350, paddingX: 1 }}>
 
                         <Link to={`?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
                             <CardMedia

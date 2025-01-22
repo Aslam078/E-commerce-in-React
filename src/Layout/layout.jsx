@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom'
 import TopRate from '../components/top-rate'
 import TopMobile from '../components/top-mobile'
 import Loading from '../components/loading';
+import HighDiscount from '../components/high-discount'
+import Slider from './slider'
 
 function Layout() {
 
@@ -22,13 +24,19 @@ function Layout() {
 
   return (
     <>
-      <div className='max-w-fit mx-auto'>
+       
+  
+      <div className='max-w-8xl mx-auto'>
+        
+          <div className='h-96'>
+          <Slider />
+          </div>
 
         <div className='grid mx-2 grid-cols-4 gap-1 mt-4'>
           <div className=''>
             <Category />
           </div>
-          <div className='col-span-3 h-screen max-h-min overflow-x-hidden min-w-96 overscroll-auto overflow-scroll bg-gray-200
+          <div className='col-span-3 h-screen max-h-min overflow-x-hidden overscroll-auto overflow-scroll bg-gray-200
           [&::-webkit-scrollbar]:w-2
           [&::-webkit-scrollbar-track]:rounded-full
         [&::-webkit-scrollbar-track]:bg-gray-100
@@ -38,16 +46,14 @@ function Layout() {
           </div>
         </div>
 
-        <div className='my-4 pb-1 mx-1 bg-gray-200'>
-          <p className='text-2xl font-semibold pt-3 ps-1'>Top rated products</p>
-
-          <div className='flex-col my-4 gap-2 mx-auto'>
+        <div className='my-4 pb-1 mx-1 '>
+          <div className='flex flex-col xl:flex-row my-4 gap-2 mx-auto'>
             <TopRate />
-          <p className='text-2xl font-semibold pt-3 ps-1'>Mobiles</p>
             <TopMobile />
+          <HighDiscount />
           </div>
         </div>
-
+      
       </div>
 
     </>

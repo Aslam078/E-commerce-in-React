@@ -1,6 +1,7 @@
 import { Button } from '@mui/material'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Login() {
@@ -55,11 +56,10 @@ function Login() {
 
     const checkuser = localStorage.getItem('save user');
     let removeButton = () => {
-        if(checkuser){
+        if (checkuser) {
             return <Button variant="contained" className='w-full' onClick={() => localStorage.removeItem('save user')} color='error' > Log out </Button>
         }
     }
-
 
     return (
         <section className="bg-gray-50 ">
@@ -80,12 +80,12 @@ function Login() {
                                 <input value={user.password} onChange={handlechange} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
 
-                           <div className='flex gap-4'>
-                           <Button variant="contained" className='w-full' type='submit'> Login </Button>
-                           {
-                            removeButton()
-                           }
-                           </div>
+                            <div className='flex gap-4'>
+                                <Button variant="contained" className='w-full' type='submit'> <Link path={'User/Profile'} > Login </Link> </Button>
+                                {
+                                    removeButton()
+                                }
+                            </div>
 
                         </form>
                     </div>
