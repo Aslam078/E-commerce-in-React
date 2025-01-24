@@ -171,7 +171,8 @@ export default function Navbar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>{ user.username || 'profile' }</p>
+        {/* <p>{ user.username || 'profile' }</p> */}
+        profile
       </MenuItem>
     </Menu>
   );
@@ -239,7 +240,10 @@ export default function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <div className='flex items-center text-base'><AccountCircle /> { user.username || 'profile' }</div>
+              <div className='flex items-center text-base'><AccountCircle /> 
+              {/* { user.username || 'profile' } */}
+              profile
+              </div>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
