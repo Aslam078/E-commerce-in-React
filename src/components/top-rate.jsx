@@ -42,7 +42,7 @@ function TopRate() {
                                 return (
                                     <Card key={product.id} sx={{ maxWidth: 320 }}>
 
-                                        <div className='hover:scale-110 transition-all flex items-center justify-center'>
+                                        <div className='hover:scale-110 transition-all duration-300 flex items-center justify-center'>
 
                                             <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
                                                 <CardMedia

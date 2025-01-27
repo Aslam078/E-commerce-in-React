@@ -54,7 +54,7 @@ export default function MediaCard({ products, loading }) {
                 sx={{ maxWidth: 320 }}
                 className='animate__animated animate__fadeIn hover:shadow-lg transition-all duration-500'>
 
-                <div className='hover:scale-110 transition-all'>
+                <div className='hover:scale-110 transition-all duration-300'>
 
                   <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
                     <CardMedia

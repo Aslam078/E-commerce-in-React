@@ -31,7 +31,7 @@ function HighDiscount() {
                     highdiscount.map((product) => {
                         return <Card key={product.id} sx={{ maxWidth: 320 }}>
                             <Link to={`Product/detail/?id=${product.id}&title=${product.title}?&cate=${product.category}`}>
-                            <div className='hover:scale-110 transition-all flex items-center justify-center'>
+                            <div className='hover:scale-110 transition-all duration-300 flex items-center justify-center'>
                                 <CardMedia
                                     sx={{ minHeight: 235,width: 235 }}
                                     image={product.thumbnail}

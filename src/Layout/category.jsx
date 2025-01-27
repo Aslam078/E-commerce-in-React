@@ -40,10 +40,10 @@ function Category() {
         [&::-webkit-scrollbar-thumb]:rounded-full
       [&::-webkit-scrollbar-thumb]:bg-gray-300
       '>
-        <Link to={'/'}> <li className={`${defaultCategory()} transition-all sm:my-1 text-ellipsis sm:p-3 py-2 cursor-pointer rounded-md flex justify-between`}>All Product <span className='hidden sm:block'> <ArrowRightIcon /> </span> </li></Link>
+        <Link to={'/'}> <li className={`${defaultCategory()} transition-all sm:my-1 text-ellipsis sm:p-3 py-2 cursor-pointer rounded-md flex justify-between hover:bg-white`}>All Product <span className='hidden sm:block'> <ArrowRightIcon /> </span> </li></Link>
         {
           categories.map((cate, index) => {
-            return <Link to={`/Category?category=${cate.slug}`} key={index}><li className={`${active(cate)} transition-all sm:my-1 text-ellipsis sm:p-3 py-2 cursor-pointer rounded-md flex justify-between`}>{cate.name}<span className='hidden sm:block'> <ArrowRightIcon /> </span></li></Link>
+            return <Link to={`/Category?category=${cate.slug}`} key={index}><li className={`${active(cate)} transition-all sm:my-1 text-ellipsis sm:p-3 py-2 cursor-pointer rounded-md flex justify-between hover:bg-white`}>{cate.name}<span className='hidden sm:block'> <ArrowRightIcon /> </span></li></Link>
           })
         }
       </ul>
