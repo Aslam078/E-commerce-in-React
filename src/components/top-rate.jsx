@@ -32,7 +32,7 @@ function TopRate() {
 
 
         <>
-            <div className='bg-gray-200'>
+            <div className='bg-lime-50'>
                 <p className='text-2xl font-semibold pt-3 ps-1'>Top rated</p>
                 {loading ? loading :
                     <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 items-center xl:grid-cols-2 gap-2 p-2'>

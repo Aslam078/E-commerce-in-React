@@ -36,7 +36,7 @@ function Layout() {
           <div className=''>
             <Category />
           </div>
-          <div className='col-span-3 h-screen max-h-min overflow-x-hidden overscroll-auto overflow-scroll bg-gray-200
+          <div className='col-span-3 h-screen max-h-min overflow-x-hidden overscroll-auto overflow-scroll bg-teal-50 rounded-md
           [&::-webkit-scrollbar]:w-2
           [&::-webkit-scrollbar-track]:rounded-full
         [&::-webkit-scrollbar-track]:bg-gray-100

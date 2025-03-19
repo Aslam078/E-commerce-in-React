@@ -8,7 +8,7 @@ function Slider() {
     <>
       <Carousel
         className="rounded-xl"
-        transition={{ duration: 2 }}
+        transition={{ duration: 1 }}
         autoplay={true}
         autoplayDelay={5000}
         loop= {true}
